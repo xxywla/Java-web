@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>AddServlet</servlet-name>
+        <servlet-class>com.xxyw.servlets.AddServlet</servlet-class>
+    </servlet>
+
+
+    <servlet>
+        <servlet-name>Demo01Servlet</servlet-name>
+        <servlet-class>com.xxyw.servlets.Demo01Servlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+
+    <servlet>
+        <servlet-name>Demo03Servlet</servlet-name>
+        <servlet-class>com.xxyw.servlets.Demo03Servlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Demo05Servlet</servlet-name>
+        <servlet-class>com.xxyw.servlets.Demo05Servlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Demo06Servlet</servlet-name>
+        <servlet-class>com.xxyw.servlets.Demo06Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Demo06Servlet</servlet-name>
+        <url-pattern>/demo06</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Demo05Servlet</servlet-name>
+        <url-pattern>/demo05</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Demo03Servlet</servlet-name>
+        <url-pattern>/demo03</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AddServlet</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Demo01Servlet</servlet-name>
+        <url-pattern>/demo01</url-pattern>
+    </servlet-mapping>
+
+    <!-- 在上下文参数中配置视图前缀和视图后缀 -->
+    <context-param>
+        <param-name>view-prefix</param-name>
+        <param-value>/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view-suffix</param-name>
+        <param-value>.html</param-value>
+    </context-param>
+
+</web-app>
