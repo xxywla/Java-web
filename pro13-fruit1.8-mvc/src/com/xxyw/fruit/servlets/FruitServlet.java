@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 @WebServlet("/fruit.do")
@@ -27,6 +29,23 @@ public class FruitServlet extends ViewBaseServlet {
         if (StringUtil.isEmpty(operator)) {
             operator = "index";
         }
+
+        Method[] methods = this.getClass().getDeclaredMethods();
+        for (Method method : methods) {
+            String methodName = method.getName();
+            if (operator.equals(methodName)) {
+                try {
+                    method.invoke(this, req, resp);
+                    return;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        throw new RuntimeException("非法的operator");
+/*
         switch (operator) {
             case "index":
                 index(req, resp);
@@ -45,7 +64,7 @@ public class FruitServlet extends ViewBaseServlet {
                 break;
             default:
                 throw new RuntimeException("非法的operator");
-        }
+        }*/
     }
 
     private void index(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
