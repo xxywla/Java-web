@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<beans>
-    <bean id="fruit" class="com.xxyw.fruit.controllers.FruitController"></bean>
-</beans>
