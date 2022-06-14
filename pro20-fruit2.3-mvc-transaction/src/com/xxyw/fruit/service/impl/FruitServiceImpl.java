@@ -20,6 +20,9 @@ public class FruitServiceImpl implements FruitService {
     @Override
     public void addFruit(Fruit fruit) {
         fruitDAO.addFruit(fruit);
+        Fruit fruit2 = fruitDAO.getFruitByFid(2);
+        fruit2.setFcount(1234);
+        fruitDAO.updateFruit(fruit2);
     }
 
     @Override

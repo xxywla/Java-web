@@ -1,7 +1,7 @@
 package com.xxyw.myssm.myspringmvc;
 
-import com.xxyw.myssm.io.BeanFactory;
-import com.xxyw.myssm.io.ClassPathXmlApplicationContext;
+import com.xxyw.myssm.ioc.BeanFactory;
+import com.xxyw.myssm.ioc.ClassPathXmlApplicationContext;
 import com.xxyw.myssm.util.StringUtil;
 
 import javax.servlet.ServletException;
@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
@@ -85,10 +84,9 @@ public class DispatcherServlet extends ViewBaseServlet {
                     }
                 }
             }
-        } catch (InvocationTargetException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            throw new DispatcherServletException("DispatcherServlet出错了...");
         }
     }
 }

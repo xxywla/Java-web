@@ -1,7 +1,7 @@
 package com.xxyw.myssm.myspringmvc;
 
-import com.xxyw.myssm.io.BeanFactory;
-import com.xxyw.myssm.io.ClassPathXmlApplicationContext;
+import com.xxyw.myssm.ioc.BeanFactory;
+import com.xxyw.myssm.ioc.ClassPathXmlApplicationContext;
 import com.xxyw.myssm.util.StringUtil;
 
 import javax.servlet.ServletException;
