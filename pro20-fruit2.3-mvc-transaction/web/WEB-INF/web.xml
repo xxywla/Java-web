@@ -4,10 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
-    </context-param>
 
     <!-- 在上下文参数中配置视图前缀和视图后缀 -->
     <context-param>
@@ -31,5 +27,14 @@
         <servlet-name>Demo01Servlet</servlet-name>
         <url-pattern>/demo01</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>com.xxyw.myssm.listeners.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>applicationContext.xml</param-value>
+    </context-param>
 
 </web-app>

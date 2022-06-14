@@ -4,6 +4,7 @@ import com.xxyw.myssm.ioc.BeanFactory;
 import com.xxyw.myssm.ioc.ClassPathXmlApplicationContext;
 import com.xxyw.myssm.util.StringUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,15 @@ public class DispatcherServlet extends ViewBaseServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        beanFactory = new ClassPathXmlApplicationContext();
+        //beanFactory = new ClassPathXmlApplicationContext();
+
+        ServletContext application = getServletContext();
+        Object beanFactoryObj = application.getAttribute("beanFactory");
+        if (beanFactoryObj != null) {
+            beanFactory = (BeanFactory) beanFactoryObj;
+        } else {
+            throw new RuntimeException("IOC容器获取失败！");
+        }
     }
 
     @Override
