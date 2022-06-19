@@ -16,13 +16,18 @@ public class UserController {
         // 1.登录验证
         UserBasic userBasic = userBasicService.login(loginId, pwd);
         if (userBasic != null) {
+            // 1-1 获取相关的好友信息
             List<UserBasic> friendList = userBasicService.getFriendList(userBasic);
+            // 1-2 获取相关的日志列表信息
             List<Topic> topicList = topicService.getTopicList(userBasic);
 
             userBasic.setFriendList(friendList);
             userBasic.setTopicList(topicList);
 
-            session.setAttribute("userBasic",userBasic);
+            // userBasic 保存的是登录者的信息
+            session.setAttribute("userBasic", userBasic);
+            // friend 保存的是当前进入的是谁的空间
+            session.setAttribute("friend", userBasic);
 
             return "index";
         } else {
