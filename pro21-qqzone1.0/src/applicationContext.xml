@@ -14,19 +14,30 @@
 <beans>
 
     <bean id="userBasicDAO" class="com.xxyw.qqzone.dao.impl.UserBasicDAOImpl"/>
-
     <bean id="topicDAO" class="com.xxyw.qqzone.dao.impl.TopicDAOImpl"/>
+    <bean id="hostReplyDAO" class="com.xxyw.qqzone.dao.impl.HostReplyDAOImpl"/>
+    <bean id="replyDAO" class="com.xxyw.qqzone.dao.impl.ReplyDAOImpl"/>
 
     <bean id="userBasicService" class="com.xxyw.qqzone.service.impl.UserBasicServiceImpl">
         <property name="userBasicDAO" ref="userBasicDAO"/>
     </bean>
-
     <bean id="topicService" class="com.xxyw.qqzone.service.impl.TopicServiceImpl">
         <property name="topicDAO" ref="topicDAO"/>
+        <property name="replyService" ref="replyService"/>
+    </bean>
+    <bean id="replyService" class="com.xxyw.qqzone.service.impl.ReplyServiceImpl">
+        <property name="replyDAO" ref="replyDAO"/>
+        <property name="hostReplyService" ref="hostReplyService"/>
+    </bean>
+    <bean id="hostReplyService" class="com.xxyw.qqzone.service.impl.HostReplyServiceImpl">
+        <property name="hostReplyDAO" ref="hostReplyDAO"/>
     </bean>
 
     <bean id="user" class="com.xxyw.qqzone.controller.UserController">
         <property name="userBasicService" ref="userBasicService"/>
+        <property name="topicService" ref="topicService"/>
+    </bean>
+    <bean id="topic" class="com.xxyw.qqzone.controller.TopicController">
         <property name="topicService" ref="topicService"/>
     </bean>
 

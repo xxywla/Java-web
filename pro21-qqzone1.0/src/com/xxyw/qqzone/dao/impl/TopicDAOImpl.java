@@ -25,6 +25,6 @@ public class TopicDAOImpl extends BaseDAO<Topic> implements TopicDAO {
 
     @Override
     public Topic getTopic(Integer id) {
-        return null;
+        return load("select * from t_topic where id = ? ", id);
     }
 }

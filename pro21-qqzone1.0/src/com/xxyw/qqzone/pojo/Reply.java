@@ -14,6 +14,10 @@ public class Reply {
     public Reply() {
     }
 
+    public Reply(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

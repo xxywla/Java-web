@@ -12,6 +12,13 @@ public class Topic {
 
     private List<Reply> replyList; //1:N
 
+    public Topic() {
+    }
+
+    public Topic(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -60,6 +67,5 @@ public class Topic {
         this.replyList = replyList;
     }
 
-    public Topic() {
-    }
+
 }
