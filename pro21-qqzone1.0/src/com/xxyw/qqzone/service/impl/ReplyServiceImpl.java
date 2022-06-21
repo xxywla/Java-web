@@ -32,4 +32,9 @@ public class ReplyServiceImpl implements ReplyService {
         }
         return replyList;
     }
+
+    @Override
+    public void addReply(Reply reply) {
+        replyDAO.addReply(reply);
+    }
 }

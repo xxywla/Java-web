@@ -42,6 +42,9 @@
     <bean id="topic" class="com.xxyw.qqzone.controller.TopicController">
         <property name="topicService" ref="topicService"/>
     </bean>
+    <bean id="reply" class="com.xxyw.qqzone.controller.ReplyController">
+        <property name="replyService" ref="replyService"/>
+    </bean>
 
     <bean id="page" class="com.xxyw.myssm.myspringmvc.PageController"/>
 
