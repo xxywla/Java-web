@@ -20,6 +20,6 @@ public class ReplyDAOImpl extends BaseDAO<Reply> implements ReplyDAO {
 
     @Override
     public void delReply(Integer id) {
-        executeUpdate("delete * from t_reply where id = ? ", id);
+        executeUpdate("delete from t_reply where id = ? ", id);
     }
 }

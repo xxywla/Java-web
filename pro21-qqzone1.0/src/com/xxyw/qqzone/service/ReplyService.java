@@ -10,4 +10,7 @@ public interface ReplyService {
 
     // 增加对某个 topic 的回复
     void addReply(Reply reply);
+
+    // 根据 ReplyId 删除对应的回复
+    void delReply(Integer replyId);
 }

@@ -18,4 +18,9 @@ public class ReplyController {
         replyService.addReply(reply);
         return "redirect:topic.do?operate=topicDetail&id=" + topicId;
     }
+
+    public String delReply(Integer replyId, Integer topicId) {
+        replyService.delReply(replyId);
+        return "redirect:topic.do?operate=topicDetail&id=" + topicId;
+    }
 }
