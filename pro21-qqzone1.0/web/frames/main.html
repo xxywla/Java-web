@@ -19,7 +19,7 @@
             <th>操作</th>
         </tr>
         <tr th:if="${#lists.isEmpty(session.friend.topicList)}">
-            <td>暂无日志列表</td>
+            <th colspan="4">暂无日志列表1</th>
         </tr>
         <tr th:unless="${#lists.isEmpty(session.friend.topicList)}" th:each="topic : ${session.friend.topicList}">
             <td th:text="${topic.id}">2</td>
