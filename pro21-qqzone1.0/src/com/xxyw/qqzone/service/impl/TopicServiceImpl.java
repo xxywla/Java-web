@@ -36,4 +36,17 @@ public class TopicServiceImpl implements TopicService {
 
         return topic;
     }
+
+    @Override
+    public void delTopicById(Integer topicId) {
+
+        // 获取指定 topicId 的回复
+        List<Reply> replyList = replyService.getReplyListByTopicId(topicId);
+
+        for (Reply reply : replyList) {
+            replyService.delReply(reply.getId());
+        }
+
+        topicDAO.delTopic(new Topic(topicId));
+    }
 }
