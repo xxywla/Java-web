@@ -12,6 +12,19 @@
 
 
 <beans>
+    <!-- dao -->
+    <bean id="userDAO" class="com.xxyw.book.dao.impl.UserDAOImpl"/>
+
+    <!-- service -->
+    <bean id="userService" class="com.xxyw.book.service.impl.UserServiceImpl">
+        <property name="userDAO" ref="userDAO"/>
+    </bean>
+
+    <!-- controller -->
+    <bean id="user" class="com.xxyw.book.controller.UserController">
+        <property name="userService" ref="userService"/>
+    </bean>
+
 
     <bean id="page" class="com.xxyw.myssm.myspringmvc.PageController"/>
 
