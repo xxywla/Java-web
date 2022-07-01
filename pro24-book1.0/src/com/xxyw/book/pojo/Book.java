@@ -8,7 +8,7 @@ public class Book {
     private String author;
     private Integer saleCount;
     private Integer bookCount;
-    private Integer bookStatus;
+    private Integer bookStatus; // 0 表示正常   -1 表示无效
 
     public Book() {
     }
