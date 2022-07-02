@@ -7,11 +7,16 @@ public class CartItem {
     private User userBean;
 
     public CartItem() {
-
     }
 
     public CartItem(Integer id) {
         this.id = id;
+    }
+
+    public CartItem(Book book, Integer buyCount, User userBean) {
+        this.book = book;
+        this.buyCount = buyCount;
+        this.userBean = userBean;
     }
 
     public Integer getId() {

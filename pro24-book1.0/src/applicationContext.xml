@@ -15,7 +15,7 @@
     <!-- dao -->
     <bean id="userDAO" class="com.xxyw.book.dao.impl.UserDAOImpl"/>
     <bean id="bookDAO" class="com.xxyw.book.dao.impl.BookDAOImpl"/>
-
+    <bean id="cartItemDAO" class="com.xxyw.book.dao.impl.CartItemDAOImpl"/>
     <!-- service -->
     <bean id="userService" class="com.xxyw.book.service.impl.UserServiceImpl">
         <property name="userDAO" ref="userDAO"/>
@@ -23,13 +23,20 @@
     <bean id="bookService" class="com.xxyw.book.service.impl.BookServiceImpl">
         <property name="bookDAO" ref="bookDAO"/>
     </bean>
+    <bean id="cartItemService" class="com.xxyw.book.service.impl.CartItemServiceImpl">
+        <property name="cartItemDAO" ref="cartItemDAO"/>
+    </bean>
 
     <!-- controller -->
     <bean id="user" class="com.xxyw.book.controller.UserController">
         <property name="userService" ref="userService"/>
+        <property name="cartItemService" ref="cartItemService"/>
     </bean>
     <bean id="book" class="com.xxyw.book.controller.BookController">
         <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="cart" class="com.xxyw.book.controller.CartController">
+        <property name="cartItemService" ref="cartItemService"/>
     </bean>
 
 
