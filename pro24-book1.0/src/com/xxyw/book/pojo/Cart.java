@@ -7,6 +7,7 @@ public class Cart {
     private Map<Integer, CartItem> cartItemMap;
     private Double totalMoney;
     private Integer totalCount;
+    private Integer totalBookCount;
 
     public Cart() {
     }
@@ -38,4 +39,14 @@ public class Cart {
         return totalCount;
     }
 
+    public Integer getTotalBookCount() {
+        totalBookCount = 0;
+        if (cartItemMap != null && cartItemMap.size() > 0) {
+            Set<Map.Entry<Integer, CartItem>> entries = cartItemMap.entrySet();
+            for (Map.Entry<Integer, CartItem> entry : entries) {
+                totalBookCount += entry.getValue().getBuyCount();
+            }
+        }
+        return totalBookCount;
+    }
 }

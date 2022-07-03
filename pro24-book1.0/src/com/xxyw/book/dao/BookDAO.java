@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface BookDAO {
     List<Book> getBookList();
+    Book getBookById(Integer bookId);
 }

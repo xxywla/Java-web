@@ -25,6 +25,7 @@
     </bean>
     <bean id="cartItemService" class="com.xxyw.book.service.impl.CartItemServiceImpl">
         <property name="cartItemDAO" ref="cartItemDAO"/>
+        <property name="bookService" ref="bookService"/>
     </bean>
 
     <!-- controller -->
