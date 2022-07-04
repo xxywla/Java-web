@@ -11,4 +11,6 @@ public interface CartItemDAO {
     void updateCartItem(CartItem cartItem);
 
     List<CartItem> getCartItemList(User user);
+
+    void delete(CartItem cartItem);
 }

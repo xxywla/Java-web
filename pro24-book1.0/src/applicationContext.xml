@@ -16,6 +16,8 @@
     <bean id="userDAO" class="com.xxyw.book.dao.impl.UserDAOImpl"/>
     <bean id="bookDAO" class="com.xxyw.book.dao.impl.BookDAOImpl"/>
     <bean id="cartItemDAO" class="com.xxyw.book.dao.impl.CartItemDAOImpl"/>
+    <bean id="orderDAO" class="com.xxyw.book.dao.impl.OrderDAOImpl"/>
+    <bean id="orderItemDAO" class="com.xxyw.book.dao.impl.OrderItemDAOImpl"/>
     <!-- service -->
     <bean id="userService" class="com.xxyw.book.service.impl.UserServiceImpl">
         <property name="userDAO" ref="userDAO"/>
@@ -26,6 +28,11 @@
     <bean id="cartItemService" class="com.xxyw.book.service.impl.CartItemServiceImpl">
         <property name="cartItemDAO" ref="cartItemDAO"/>
         <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="orderService" class="com.xxyw.book.service.impl.OrderServiceImpl">
+        <property name="orderDAO" ref="orderDAO"/>
+        <property name="orderItemDAO" ref="orderItemDAO"/>
+        <property name="cartItemDAO" ref="cartItemDAO"/>
     </bean>
 
     <!-- controller -->
@@ -39,7 +46,9 @@
     <bean id="cart" class="com.xxyw.book.controller.CartController">
         <property name="cartItemService" ref="cartItemService"/>
     </bean>
-
+    <bean id="order" class="com.xxyw.book.controller.OrderController">
+        <property name="orderService" ref="orderService"/>
+    </bean>
 
     <bean id="page" class="com.xxyw.myssm.myspringmvc.PageController"/>
 
