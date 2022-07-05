@@ -9,6 +9,7 @@ import com.xxyw.book.pojo.OrderItem;
 import com.xxyw.book.pojo.User;
 import com.xxyw.book.service.OrderService;
 
+import java.util.List;
 import java.util.Map;
 
 public class OrderServiceImpl implements OrderService {
@@ -39,5 +40,18 @@ public class OrderServiceImpl implements OrderService {
         for (CartItem value : cartItemMap.values()) {
             cartItemDAO.delete(value);
         }
+    }
+
+    @Override
+    public List<OrderBean> getOrderList(User user) {
+        List<OrderBean> orderList = orderDAO.getOrderList(user);
+
+        for (OrderBean orderBean : orderList) {
+            int totalBookCount = orderDAO.getTotalBookCount(orderBean);
+            orderBean.setTotalBookCount(totalBookCount);
+        }
+
+        return orderList;
+
     }
 }

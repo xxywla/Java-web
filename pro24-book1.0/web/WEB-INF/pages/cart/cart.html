@@ -18,7 +18,7 @@
         </div>
         <div class="header-right">
             <h3>欢迎<span th:text="${session.currUser.uname}">张总</span>光临尚硅谷书城</h3>
-            <div class="order"><a th:href="@{/order/order.html}">我的订单</a></div>
+            <div class="order"><a th:href="@{/order.do}">我的订单</a></div>
             <div class="destory"><a th:href="@{/index.html}">注销</a></div>
             <div class="gohome">
                 <a th:href="@{/index.html}">返回</a>
@@ -33,7 +33,6 @@
             <tr>
                 <th>图片</th>
                 <th>商品名称</th>
-
                 <th>数量</th>
                 <th>单价</th>
                 <th>金额</th>

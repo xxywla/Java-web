@@ -6,6 +6,7 @@ import com.xxyw.book.service.OrderService;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class OrderController {
@@ -23,6 +24,17 @@ public class OrderController {
         orderBean.setOrderStatus(0);
 
         orderService.addOrderBean(orderBean);
-        return "index";
+        return "redirect:book.do";
+    }
+
+    // 显示用户订单页面
+    public String index(HttpSession session) {
+
+        User user = (User) session.getAttribute("currUser");
+        List<OrderBean> orderList = orderService.getOrderList(user);
+        user.setOrderList(orderList);
+        session.setAttribute("currUser", user);
+
+        return "order/order";
     }
 }
