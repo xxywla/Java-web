@@ -32,4 +32,14 @@ public class CartController {
 
         return "redirect:cart.do";
     }
+
+    public String editBuyCount(Integer cartItemId, Integer buyCount) {
+
+        CartItem cartItem = new CartItem();
+        cartItem.setId(cartItemId);
+        cartItem.setBuyCount(buyCount);
+        cartItemService.updateCartItem(cartItem);
+
+        return "redirect:cart.do";
+    }
 }
