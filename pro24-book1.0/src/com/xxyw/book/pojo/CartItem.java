@@ -1,10 +1,14 @@
 package com.xxyw.book.pojo;
 
+import java.math.BigDecimal;
+
 public class CartItem {
     private Integer id;
     private Book book;
     private Integer buyCount;
     private User userBean;
+
+    private Double subtotal;
 
     public CartItem() {
     }
@@ -49,5 +53,16 @@ public class CartItem {
 
     public void setUserBean(User userBean) {
         this.userBean = userBean;
+    }
+
+    public Double getSubtotal() {
+        BigDecimal bPrice = BigDecimal.valueOf(book.getPrice());
+        BigDecimal bCount = new BigDecimal(buyCount);
+        subtotal = bPrice.multiply(bCount).doubleValue();
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
     }
 }
