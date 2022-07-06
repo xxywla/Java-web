@@ -19,6 +19,13 @@ public class User {
         this.id = id;
     }
 
+    public User(String uname, String pwd, String email, Integer role) {
+        this.uname = uname;
+        this.pwd = pwd;
+        this.email = email;
+        this.role = role;
+    }
+
     public Cart getCart() {
         return cart;
     }

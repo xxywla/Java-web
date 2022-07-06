@@ -14,7 +14,7 @@ import java.util.Set;
 @WebFilter(
         urlPatterns = {"*.do", "*.html"},
         initParams = {
-                @WebInitParam(name = "bai", value = "/pro24/page.do?operate=page&page=user/login,/pro24/user.do?null")
+                @WebInitParam(name = "bai", value = "/pro24/page.do?operate=page&page=user/login,/pro24/user.do?null,/pro24/page.do?operate=page&page=user/regist,/pro24/user.do?operate=regist")
         }
 )
 public class SessionFilter implements Filter {
@@ -38,7 +38,7 @@ public class SessionFilter implements Filter {
         String uri = request.getRequestURI();
         String queryString = request.getQueryString();
         String str = uri + "?" + queryString;
-        if (baiSet.contains(str)) {
+        if (check(baiSet, str)) {
             filterChain.doFilter(request, response);
         } else {
             HttpSession session = request.getSession();
@@ -54,5 +54,12 @@ public class SessionFilter implements Filter {
     @Override
     public void destroy() {
 
+    }
+
+    private boolean check(Set<String> baiSet, String str) {
+        for (String bai : baiSet) {
+            if (str.contains(bai)) return true;
+        }
+        return false;
     }
 }
