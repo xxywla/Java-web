@@ -33,10 +33,14 @@ public class UserController {
         Object kaptchaObj = session.getAttribute("KAPTCHA_SESSION_KEY");
 
         if (kaptchaObj == null || !kaptchaObj.equals(verifyCode)) {
+            session.setAttribute("verifyCodeStatus", 0);
             return "user/regist";
         }
 
         userService.regist(new User(uname, pwd, email, 0));
+
+        session.setAttribute("verifyCodeStatus", 1);
+
         return "user/login";
     }
 }
