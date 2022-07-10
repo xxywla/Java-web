@@ -14,7 +14,12 @@ import java.util.Set;
 @WebFilter(
         urlPatterns = {"*.do", "*.html"},
         initParams = {
-                @WebInitParam(name = "bai", value = "/pro24/page.do?operate=page&page=user/login,/pro24/page.do?operate=page&page=user/regist,/pro24/user.do?null,/pro24/page.do?operate=page&page=user/regist,/pro24/user.do?operate=regist")
+                @WebInitParam(name = "bai", value = "/pro24/page.do?operate=page&page=user/login," +
+                        "/pro24/page.do?operate=page&page=user/regist," +
+                        "/pro24/user.do?null," +
+                        "/pro24/page.do?operate=page&page=user/regist," +
+                        "/pro24/user.do?operate=regist," +
+                        "/pro24/user.do?operate=checkUname&uname=")
         }
 )
 public class SessionFilter implements Filter {

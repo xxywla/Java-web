@@ -43,4 +43,13 @@ public class UserController {
 
         return "user/login";
     }
+
+    public String checkUname(String uname) {
+        User user = userService.getUserByUname(uname);
+        if (user == null) {
+            return "json:{'uname':'0'}";
+        } else {
+            return "json:{'uname':'1'}";
+        }
+    }
 }

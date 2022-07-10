@@ -58,3 +58,36 @@ function check() {
 
     return true;
 }
+
+var xmlHttpRequest;
+
+function createXMLHttpRequest() {
+    if (window.XMLHttpRequest) {
+        xmlHttpRequest = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        try {
+            xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (e) {
+            xmlHttpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        }
+    }
+}
+
+function checkUname() {
+    createXMLHttpRequest();
+    var uname = $("unameTxt").value;
+    var url = "user.do?operate=checkUname&uname=" + uname;
+    xmlHttpRequest.open("GET", url, true);
+    xmlHttpRequest.onreadystatechange = ckUnameCB;
+    xmlHttpRequest.send();
+}
+
+function ckUnameCB() {
+    if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+        var responseText = xmlHttpRequest.responseText;
+        console.log(responseText);
+        if (responseText === "{'uname':'1'}") {
+            alert("用户名已经被注册！");
+        }
+    }
+}
