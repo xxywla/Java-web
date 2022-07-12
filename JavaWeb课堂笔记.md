@@ -596,3 +596,76 @@ ServletContextListener的子类ContextLoaderListener中的contextInitialized如�
 ```
 
 web.xml中的Listener和配置文件地址的初始化参数如上。Listener还可以使用注解配置。
+
+# 4 Cookie
+
+Cookie保存在客户端（浏览器），可以设置有效时长。应用有记住用户名密码等。
+
+```java
+Cookie cookie = new Cookie("uname", "jim");
+response.addCookie(cookie);
+cookie.setMaxAge(60 * 60 * 24 * 10);
+```
+
+已上代码就是创建一个Cookie并通过响应返回给浏览器，设置有效期10天。
+
+# 5 Kaptcha
+
+用于生成图片验证码。
+
+使用步骤
+（1）添加jar，在web.xml中配置相关属性
+（2）在html上使用 `url-pattern` ，在后端通过Session的 `KAPTCHA_SESSION_KEY` 获取正确的验证码，和前端发送过来的用户输入的比较，进行后续处理。
+
+在web.xml中的配置如下
+
+```xml
+<servlet>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    <init-param>
+        <param-name>kaptcha.border.color</param-name>
+        <param-value>red</param-value>
+    </init-param>
+    <init-param>
+        <param-name>kaptcha.textproducer.char.string</param-name>
+        <param-value>abcdefg</param-value>
+    </init-param>
+    <init-param>
+        <param-name>kaptcha.noise.impl</param-name>
+        <param-value>com.google.code.kaptcha.impl.NoNoise</param-value>
+    </init-param>
+    <init-param>
+        <param-name>kaptcha.image.width</param-name>
+        <param-value>120</param-value>
+    </init-param>
+    <init-param>
+        <param-name>kaptcha.image.height</param-name>
+        <param-value>40</param-value>
+    </init-param>
+    <init-param>
+        <param-name>kaptcha.textproducer.font.size</param-name>
+        <param-value>28</param-value>
+    </init-param>
+</servlet>
+<servlet-mapping>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <url-pattern>/kaptch.jpg</url-pattern>
+</servlet-mapping>
+```
+
+可以在 `init-param` 配置边框颜色、字符集范围、图片是否有噪声、图片长宽、字体大小等。
+其中的 `url-pattern` 就是html中引用图片的地址。
+
+```xml
+<img th:src="@{/kaptch.jpg}" alt="" />
+```
+
+如上，在regist.html中引用。
+
+```java
+Object kaptchaObj = session.getAttribute("KAPTCHA_SESSION_KEY");
+if (kaptchaObj == null || !kaptchaObj.equals(verifyCode)) {}
+```
+
+在Controller中的regist方法中通过Session获取真实值，和前端传来的 `verifyCode` 比较再进行相关处理。

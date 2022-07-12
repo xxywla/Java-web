@@ -45,7 +45,7 @@ function check() {
     }
     pwdSpan2.style.visibility = "hidden";
 
-    // 密码的长度至少为8位
+    // 邮箱
     var email = $("emailTxt").value;
     var emailSpan = $("emailSpan");
 

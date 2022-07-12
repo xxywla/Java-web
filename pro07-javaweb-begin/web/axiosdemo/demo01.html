@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script language="JavaScript" src="../js/vue.js"></script>
+    <script language="JavaScript" src="../js/axios.min.js"></script>
+    <script language="JavaScript">
+        window.onload = function () {
+            var vue = new Vue({
+                "el": "#div0",
+                data: {
+                    uname: "lina",
+                    pwd: "ok"
+                },
+                methods: {
+                    axios01: function () {
+                        axios({
+                            method: "POST",
+                            url: "/pro07/axios01.do",
+                            params: {
+                                uname: vue.uname,
+                                pwd: vue.pwd
+                            }
+                        }).then(function (value) {
+                            console.log(value)
+                        }).catch(function (reason) {
+                            console.log(reason)
+                        });
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="div0">
+    uname:<input type="text" v-model="uname"/></br>
+    pwd:<input type="text" v-model="pwd"/></br>
+    <input type="button" @click="axios01" value="普通参数">
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/vuedemo.css">
+    <script language="JavaScript" src="../js/vue.js"></script>
+    <script language="JavaScript">
+        window.onload = function () {
+            var vue = new Vue({
+                "el": "#div0",
+                data: {
+                    num1: 1,
+                    num2: 2,
+                    num3: 3
+                },
+                watch: {
+                    num1: function (newValue) {
+                        this.num3 = parseInt(newValue) + parseInt(this.num2);
+                    },
+                    num2: function (newValue) {
+                        this.num3 = parseInt(this.num1) + parseInt(newValue);
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="div0">
+    <input type="text" v-model:value="num1"/>
+    +
+    <input type="text" v-model:value="num2"/>
+    =
+    <span>{{num3}}</span>
+</div>
+</body>
+</html>

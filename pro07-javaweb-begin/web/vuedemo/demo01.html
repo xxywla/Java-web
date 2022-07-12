@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/vuedemo.css">
+    <script language="JavaScript" src="../js/vue.js"></script>
+    <script language="JavaScript">
+        window.onload = function () {
+            var vue = new Vue({
+                "el": "#div0",
+                data: {
+                    msg: "hello!!!",
+                    uname: "橘右京",
+                    num: 2
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="div0">
+    <input type="text" v-model="num"/>
+    <div v-if="num%2==0" class="div1">&nbsp;</div>
+    <div v-else="num%2==0" class="div2">&nbsp;</div>
+    <div v-show="num%2==0" class="div3">&nbsp;</div>
+</div>
+</body>
+</html>
