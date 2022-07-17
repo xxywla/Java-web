@@ -1,9 +1,3 @@
-function editBuyCount(cartItemId, buyCount) {
-    if (buyCount > 0) {
-        window.location.href = "cart.do?operate=editBuyCount&cartItemId=" + cartItemId + "&buyCount=" + buyCount;
-    }
-}
-
 window.onload = function () {
     var vue = new Vue({
         el: "#cart_div",
@@ -19,8 +13,22 @@ window.onload = function () {
                         operate: "getCart"
                     }
                 }).then(function (value) {
-                    var cart = value.data
-                    vue.cart = cart
+                    vue.cart = value.data
+                }).catch(function (reason) {
+
+                })
+            },
+            editBuyCount: function (cartItemId, buyCount) {
+                axios({
+                    method: "POST",
+                    url: "cart.do",
+                    params: {
+                        operate: "editBuyCount",
+                        cartItemId: cartItemId,
+                        buyCount: buyCount
+                    }
+                }).then(function (value) {
+                    vue.getCart()
                 }).catch(function (reason) {
 
                 })

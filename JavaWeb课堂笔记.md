@@ -669,3 +669,57 @@ if (kaptchaObj == null || !kaptchaObj.equals(verifyCode)) {}
 ```
 
 在Controller中的regist方法中通过Session获取真实值，和前端传来的 `verifyCode` 比较再进行相关处理。
+
+# 6 前后端分离
+
+使用vue和axios实现前后端分析，异步发送请求，后端的数据以json格式发送给前端。
+
+以修改书城项目的购物车页面为例。
+
+```javascript
+window.onload = function () {
+    var vue = new Vue({
+        el: "#cart_div",
+        data: {
+            cart: {}
+        },
+        methods: {
+            getCart: function () {
+                axios({
+                    method: "POST",
+                    url: "cart.do",
+                    params: {
+                        operate: "getCart"
+                    }
+                }).then(function (value) {
+                    vue.cart = value.data
+                }).catch(function (reason) {
+
+                })
+            },
+            editBuyCount: function (cartItemId, buyCount) {
+                axios({
+                    method: "POST",
+                    url: "cart.do",
+                    params: {
+                        operate: "editBuyCount",
+                        cartItemId: cartItemId,
+                        buyCount: buyCount
+                    }
+                }).then(function (value) {
+                    vue.getCart()
+                }).catch(function (reason) {
+
+                })
+            }
+        },
+        mounted: function () {
+            this.getCart()
+        }
+    })
+}
+```
+
+对于id为 `cart_div` 的购物车div，在数据装载mounted时，调用 `getCart()` 方法向服务器端发送异步请求获取购物车信息，接收到数据后赋值给data中的cart变量。在前端使用v-bind和{{}}把data中的cart的值显示在html上。
+
+在购物车页面上增加减少商品数量的时候，调用Vue对象methods中的 `editBuyCount()` 方法，该方法向服务器发送异步请求修改购物车项的数量，服务器端可以不返回内容，浏览器只需要再调用一次 `getCart()` 方法重新获取购物车信息即可。
